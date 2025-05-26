@@ -5,7 +5,7 @@ The purpose is to make it an easy switch from EnCodec to DAC without touching an
 
 ```python
 
-from transformers  AutoProcessor
+from transformers import AutoProcessor
 import librosa
 from DAC_HF_Wrapper import DACModel
 
