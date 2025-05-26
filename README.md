@@ -7,7 +7,7 @@ The purpose is to make it an easy switch from EnCodec to DAC without touching an
 
 from transformers import AutoProcessor
 import librosa
-from DAC_HF_Wrapper import DACModel
+from dac_encodec import DACModel
 
 
 model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to('cuda')
