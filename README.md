@@ -32,7 +32,8 @@ def library_dac_config_frame_rate_setter(self_instance, value):
     pass
 
 # bypassing the frame setter error
-LibraryDacConfig.frame_rate = property(fget=original_frame_rate_getter, fset=library_dac_config_frame_rate_setter)
+LibraryDacConfig.frame_rate = property(fget=original_frame_rate_getter,
+                                        fset=library_dac_config_frame_rate_setter)
 
 
 model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to(device)
@@ -41,8 +42,8 @@ processor = AutoProcessor.from_pretrained("parler-tts/dac_44khZ_8kbps", sampling
 wav, sr = librosa.load('audio.wav', sr=44_100)
 
 inputs = processor(raw_audio=wav,
- sampling_rate=processor.sampling_rate,
- return_tensors="pt").to(device)
+                   sampling_rate=processor.sampling_rate,
+                   return_tensors="pt").to(device)
 
 with torch.no_grad():
     z = model.encode(inputs['input_values'], padding_mask=inputs['padding_mask'])
