@@ -22,6 +22,17 @@ import librosa
 from dac_encodec import DACModel
 
 
+from transformers.models.dac.configuration_dac import DacConfig as LibraryDacConfig
+
+
+original_frame_rate_getter = LibraryDacConfig.frame_rate.fget
+def library_dac_config_frame_rate_setter(self_instance, value):
+    pass
+
+# bypassing the frame setter error
+LibraryDacConfig.frame_rate = property(fget=original_frame_rate_getter, fset=library_dac_config_frame_rate_setter)
+
+
 model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to('cuda')
 processor = AutoProcessor.from_pretrained("parler-tts/dac_44khZ_8kbps", sampling_rate=44_100)
 
