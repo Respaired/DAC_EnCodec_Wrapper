@@ -25,6 +25,8 @@ from dac_encodec import DACModel
 from transformers.models.dac.configuration_dac import DacConfig as LibraryDacConfig
 
 
+device = 'cuda'
+
 original_frame_rate_getter = LibraryDacConfig.frame_rate.fget
 def library_dac_config_frame_rate_setter(self_instance, value):
     pass
@@ -33,19 +35,18 @@ def library_dac_config_frame_rate_setter(self_instance, value):
 LibraryDacConfig.frame_rate = property(fget=original_frame_rate_getter, fset=library_dac_config_frame_rate_setter)
 
 
-model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to('cuda')
+model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to(device)
 processor = AutoProcessor.from_pretrained("parler-tts/dac_44khZ_8kbps", sampling_rate=44_100)
 
 wav, sr = librosa.load('audio.wav', sr=44_100)
 
-
-
 inputs = processor(raw_audio=wav,
  sampling_rate=processor.sampling_rate,
- return_tensors="pt")
+ return_tensors="pt").to(device)
 
-z = model.encode(inputs['input_values'], padding_mask=inputs['padding_mask'])
-output = model.decode(z.audio_codes, audio_scales=None, padding_mask=inputs['padding_mask']).audio_values.detach().cpu().numpy().squeeze()
+with torch.no_grad():
+    z = model.encode(inputs['input_values'], padding_mask=inputs['padding_mask'])
+    output = model.decode(z.audio_codes, audio_scales=None, padding_mask=inputs['padding_mask']).audio_values.detach().cpu().numpy().squeeze()
 ```
 
 
