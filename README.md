@@ -20,7 +20,7 @@ pip install -e .
 from transformers import AutoProcessor
 import librosa
 from dac_encodec import DACModel
-
+import torch
 
 from transformers.models.dac.configuration_dac import DacConfig as LibraryDacConfig
 
