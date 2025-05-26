@@ -1,6 +1,6 @@
 # DAC_HF_Wrapper
-an accurate, honest to God, Descript Audio Codec wrapper for HF that's identical to how EnCodec is used.
-The purpose is to make it an easy switch from EnCodec to dac without touching anything else (inshallah).
+Descript Audio Codec wrapper for HF that's identical to how EnCodec is used.
+The purpose is to make it an easy switch from EnCodec to DAC without touching anything else (inshallah).
 # Usage
 
 ```python
