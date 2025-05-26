@@ -1,5 +1,5 @@
 # HuggingFace's EnCodec-like Wrapper for Descript Audio Codec
-Descript Audio Codec wrapper for HF that's identical to how EnCodec is used.
+Descript Audio Codec wrapper that makes it identical to how EnCodec is used.
 The purpose is to make it an easy switch from EnCodec to DAC without touching anything else (inshallah).
 
 ### Install
