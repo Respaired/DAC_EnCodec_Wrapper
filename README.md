@@ -1,6 +1,14 @@
 # HuggingFace's EnCodec-like Wrapper for Descript Audio Codec
 Descript Audio Codec wrapper for HF that's identical to how EnCodec is used.
 The purpose is to make it an easy switch from EnCodec to DAC without touching anything else (inshallah).
+
+# Install
+
+```bash
+pip install git+https://github.com/Respaired/DAC_HF_Wrapper.git
+```
+
+
 # Usage
 
 ```python
@@ -11,7 +19,7 @@ from dac_encodec import DACModel
 
 
 model = DACModel.from_pretrained("parler-tts/dac_44khZ_8kbps").to('cuda')
-processor = AutoProcessor.from_pretrained("parler-tts/dac_44khZ_8kbps")
+processor = AutoProcessor.from_pretrained("parler-tts/dac_44khZ_8kbps", sampling_rate=44_100)
 
 wav, sr = librosa.load('audio.wav', sr=44_100)
 
