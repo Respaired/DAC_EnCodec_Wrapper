@@ -15,8 +15,6 @@ import os
 import setuptools
 
 _deps = [
-    "transformers",
-    "torch",
     "descript-audio-codec",
     "descript-audiotools @ git+https://github.com/descriptinc/audiotools",  # temporary fix as long as 0.7.4 is not published
     "protobuf"
