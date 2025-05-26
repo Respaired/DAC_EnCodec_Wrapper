@@ -20,7 +20,6 @@ import setuptools
 _deps = [
     "transformers",
     "torch",
-    "sentencepiece",
     "descript-audio-codec",
     "descript-audiotools @ git+https://github.com/descriptinc/audiotools", # temporary fix as long as 0.7.4 is not published
     "protobuf"
@@ -46,7 +45,7 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 # read version
-with open(os.path.join(here, "parler_tts", "__init__.py"), encoding="utf-8") as f:
+with open(os.path.join(here, "dac_encodec", "__init__.py"), encoding="utf-8") as f:
     for line in f:
         if line.startswith("__version__"):
             version = line.split("=")[1].strip().strip('"')
