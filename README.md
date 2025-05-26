@@ -5,7 +5,11 @@ The purpose is to make it an easy switch from EnCodec to DAC without touching an
 ### Install
 
 ```bash
-pip install git+https://github.com/Respaired/DAC_HF_Wrapper.git
+
+git clone https://github.com/Respaired/DAC_HF_Wrapper.git
+cd DAC_HF_Wrapper
+pip install -e .
+
 ```
 
 
