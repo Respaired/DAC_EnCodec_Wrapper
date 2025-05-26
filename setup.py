@@ -11,27 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 import os
-
 import setuptools
-
 
 _deps = [
     "transformers",
     "torch",
     "descript-audio-codec",
-    "descript-audiotools @ git+https://github.com/descriptinc/audiotools", # temporary fix as long as 0.7.4 is not published
+    "descript-audiotools @ git+https://github.com/descriptinc/audiotools",  # temporary fix as long as 0.7.4 is not published
     "protobuf"
 ]
 
-_extras_dev_deps = [
+extras_dev_deps = [
     "black~=23.1",
     "isort>=5.5.4",
     "ruff>=0.0.241,<=0.0.259",
 ]
 
-_extras_training_deps = [
+extras_training_deps = [
     "jiwer",
     "wandb",
     "accelerate",
@@ -45,13 +42,17 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 # read version
-with open(os.path.join(here, "dac_encodec", "__init__.py"), encoding="utf-8") as f:
-    for line in f:
-        if line.startswith("__version__"):
-            version = line.split("=")[1].strip().strip('"')
-            break
-    else:
-        raise RuntimeError("Unable to find version string.")
+try:
+    with open(os.path.join(here, "dac_encodec", "__init__.py"), encoding="utf-8") as f:
+        for line in f:
+            if line.startswith("__version__"):
+                version = line.split("=")[1].strip().strip('"').strip("'")
+                break
+        else:
+            raise RuntimeError("Unable to find version string.")
+except FileNotFoundError:
+    # Fallback version if __init__.py doesn't exist
+    version = "0.1.0"
 
 setuptools.setup(
     name="dac_encodec",
@@ -61,4 +62,21 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(),
     install_requires=_deps,
+    extras_require={
+        "dev": extras_dev_deps,
+        "training": extras_training_deps,
+    },
+    python_requires=">=3.7",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+    ],
 )
