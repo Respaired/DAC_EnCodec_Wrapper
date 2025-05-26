@@ -41,9 +41,9 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
-# read version
+# read version - look for it in root __init__.py or set fallback
 try:
-    with open(os.path.join(here, "dac_encodec", "__init__.py"), encoding="utf-8") as f:
+    with open(os.path.join(here, "__init__.py"), encoding="utf-8") as f:
         for line in f:
             if line.startswith("__version__"):
                 version = line.split("=")[1].strip().strip('"').strip("'")
@@ -60,7 +60,10 @@ setuptools.setup(
     description="a Wrapper to make DAC identical to EnCodec.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=setuptools.find_packages(),
+    py_modules=[
+        # List your .py files here (without .py extension)
+        # For example, if you have modeling_dac.py, add "modeling_dac"
+    ],
     install_requires=_deps,
     extras_require={
         "dev": extras_dev_deps,
