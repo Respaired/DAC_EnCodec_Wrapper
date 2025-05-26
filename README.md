@@ -2,14 +2,14 @@
 Descript Audio Codec wrapper for HF that's identical to how EnCodec is used.
 The purpose is to make it an easy switch from EnCodec to DAC without touching anything else (inshallah).
 
-# Install
+### Install
 
 ```bash
 pip install git+https://github.com/Respaired/DAC_HF_Wrapper.git
 ```
 
 
-# Usage
+### Usage
 
 ```python
 
