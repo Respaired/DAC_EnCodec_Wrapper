@@ -27,5 +27,5 @@ output = model.decode(z.audio_codes, audio_scales=None, padding_mask=inputs['pad
 
 
 references: <br>
-[parler-tts/dac_44khZ_8kbps](https://huggingface.co/parler-tts/dac_44khZ_8kbps)
+[parler-tts/dac_44khZ_8kbps](https://huggingface.co/parler-tts/dac_44khZ_8kbps)  <br>
 [facebook/encodec_24khz](https://huggingface.co/facebook/encodec_24khz)
